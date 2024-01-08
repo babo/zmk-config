@@ -68,6 +68,10 @@ jobs:
 
           echo "::group::variables"
 
+          if [ -e zephyr/module.yml ]; then
+            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}'"
+          fi
+
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
           then
             SHIELD_ARG="-DSHIELD=\"${{ matrix.shield }}\""
