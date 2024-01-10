@@ -68,8 +68,8 @@ jobs:
 
           echo "::group::variables"
 
-          if [ -e zephyr/module.yml ]; then
-            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}'"
+          if [ -e ${GITHUB_WORKSPACE}/miryoku_zmk/zephyr/module.yml ]; then
+            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}/miryoku_zmk'"
           fi
 
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
@@ -249,7 +249,7 @@ jobs:
           echo "${GITHUB_WORKSPACE}"
           cd "${GITHUB_WORKSPACE}/zmk/app"
           {
-            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" ||
+            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}/miryoku_zmk"||
             echo "$build_failed_message $?." ;
           } 2>&1 | tee "$log"
           if grep -q 'Invalid BOARD; see above.' "$log"
