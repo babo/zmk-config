@@ -11,3 +11,4 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["lambbt_left","lambbt_right"]'
       custom_config: '["#define MIRYOKU_EXTRA_APTV3"]'
+      kconfig: '[""]'

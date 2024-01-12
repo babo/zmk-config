@@ -69,7 +69,7 @@ jobs:
           echo "::group::variables"
 
           if [ -e ${GITHUB_WORKSPACE}/miryoku_zmk/zephyr/module.yml ]; then
-            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}/miryoku_zmk'"
+            echo zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}/miryoku_zmk'" >> $GITHUB_ENV
           fi
 
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
@@ -246,10 +246,9 @@ jobs:
           build_failed_message='::error::Build failed with exit code'
           EX_UNAVAILABLE='69'
           EX_DATAERR='65'
-          echo "${GITHUB_WORKSPACE}"
           cd "${GITHUB_WORKSPACE}/zmk/app"
           {
-            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE}/miryoku_zmk"||
+            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ${{ env.zmk_load_arg }}||
             echo "$build_failed_message $?." ;
           } 2>&1 | tee "$log"
           if grep -q 'Invalid BOARD; see above.' "$log"
