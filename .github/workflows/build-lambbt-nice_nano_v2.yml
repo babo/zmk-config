@@ -10,5 +10,5 @@ jobs:
     with:
       board: '["nice_nano_v2"]'
       shield: '["lambbt_left","lambbt_right"]'
-      custom_config: '["#define MIRYOKU_EXTRA_APTV3"]'
+      custom_config: '["#define MIRYOKU_EXTRA_APTV5\n#define MIRYOKU_CLIPBOARD_MAC"]'
       kconfig: '[""]'
