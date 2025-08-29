@@ -186,7 +186,7 @@ jobs:
           artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
           echo "artifact_build_name=$artifact_build_name" >> $GITHUB_OUTPUT
           artifact_generic_name=`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
-          echo "artifact_generic_name=$artifact_generic_name" >> $GITHUB_OUTPUT
+          echo "artifact_generic_name=$artifact_build_name" >> $GITHUB_OUTPUT
 
           user=`echo "$zmk" | cut -f 1 -d '/'`
           repo=`echo "$zmk" | cut -f 2 -d '/'`
