@@ -10,5 +10,5 @@ jobs:
     with:
       board: '["nice_nano_v2"]'
       shield: '["lambbt_left","lambbt_right"]'
-      custom_config: '["#define MIRYOKU_EXTRA_GALLIUM\n#define MIRYOKU_CLIPBOARD_MAC"]'
+      custom_config: '["#define MIRYOKU_ALPHAS_GALLIUM\n#define MIRYOKU_EXTRA_COLEMAKDH"]'
       kconfig: '[""]'
