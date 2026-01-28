@@ -8,7 +8,7 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
-      board: '["seeeduino_xiao_ble"]'
+      board: '["xiao_ble"]'
       shield: '["uninarf"]'
       custom_config: '["#define MIRYOKU_ALPHAS_GALLIUM\n#define MIRYOKU_EXTRA_COLEMAKDH\n#define MIRYOKU_CLIPBOARD_MAC"]'
       kconfig: '[""]'
